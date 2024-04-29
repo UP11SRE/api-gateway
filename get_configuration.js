@@ -1,6 +1,8 @@
 const { execSync } = require('child_process');
 execSync('npm install axios');
 const axios = require('axios');
+require('dotenv').config();
+
 
 // Install npm dependencies
 try {
