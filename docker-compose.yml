@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  express-app:
+    image: raja110199/gateway:latest  
+    command: node get_configuration.js
+    ports:
+      - "8087:8087"
+    depends_on:
+      - prometheus
+      - grafana
+      - nginx
+      - consul
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus-config.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+
+  nginx:
+    image: raja110199/nginx_loadbalancer:tag  # Replace with your Nginx image name and tag
+    ports:
+      - "9000:9000"
+  
+  consul:
+    image: consul:1.15.4
+    ports:
+      - "8500:8500"
