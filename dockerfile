@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8087
 
 # Command to run the application
-CMD ["node", "get_configuration.js"]
+CMD ["npm", "start"]
